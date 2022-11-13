@@ -1,2 +1,0 @@
-class ImagePath < ApplicationRecord
-end
