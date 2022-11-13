@@ -3,9 +3,6 @@ class ImagesController < ApplicationController
     @image = Image.new
   end
 
-  def cut
-  end
-
   def upload
     @image = Image.new(resume_params)
 
@@ -14,20 +11,14 @@ class ImagesController < ApplicationController
     else
       redirect_to '/error'
     end
-    
   end
 
   def show
     @image = Image.find(params[:id])
-
-  end
-
-  def download
   end
 
   private
     def resume_params
       params.require(:image).permit(:image)
     end
-
 end
