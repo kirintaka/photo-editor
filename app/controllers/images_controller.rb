@@ -19,9 +19,8 @@ class ImagesController < ApplicationController
 
   def update
     @image = Image.find(params[:id])
-    @image.image = params[:image]
+    @image.update(image: params[:image][:image]) if params[:image][:image].present?
 
-    @image.save!
     flash[:success] = "The to-do item was successfully destroyed."
 
     redirect_to @image
