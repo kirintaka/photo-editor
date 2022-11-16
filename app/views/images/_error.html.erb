@@ -1,0 +1,8 @@
+<% if @image.errors.any? %>
+  <h3>Some errors were found:</h3>
+  <ul>
+    <% @image.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>

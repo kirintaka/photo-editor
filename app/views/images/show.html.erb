@@ -14,6 +14,9 @@
         <div class="border border-dark p-2 mb-2">Resize</div>
         <div class="border border-dark p-2 mb-2">Upload</div>
         <div class="border border-dark p-2 mb-2">Download</div>
+        <div class="border border-dark p-2 mb-2">
+          <%= button_to 'Delete', delete_path, class: "btn btn-bd-primary", method: :delete, params: {remove_image: @image.image } %>
+        </div>
       </th>
       <td>
           <%= render 'image' %>

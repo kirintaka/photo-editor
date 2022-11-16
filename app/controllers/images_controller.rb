@@ -9,7 +9,7 @@ class ImagesController < ApplicationController
     if @image.save
       redirect_to @image, notice: "The image has been uploaded."
     else
-      redirect_to '/error'
+      render 'error'
     end
   end
 
@@ -17,8 +17,30 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
   end
 
+  def update
+    @image = Image.find(params[:id])
+    @image.image = params[:image]
+
+    @image.save!
+    flash[:success] = "The to-do item was successfully destroyed."
+
+    redirect_to @image
+  end
+
+  def delete
+    @image = Image.find(params[:id])
+    
+    if params[:remove_image].present?
+      @image.remove_image!
+    end
+    @image.save!
+
+    flash[:success] = "The to-do item was successfully destroyed."
+    redirect_to @image
+  end
+
   private
     def resume_params
-      params.require(:image).permit(:image)
+      params.require(:image).permit(:image, :remove_image)
     end
 end
