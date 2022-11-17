@@ -1,15 +1,11 @@
 class ImagesController < ApplicationController
-  def index
-    @image = Image.new
-  end
-
-  def upload
+  def create
     @image = Image.new(resume_params)
 
     if @image.save
-      redirect_to @image, notice: "The image has been uploaded."
+      redirect_to @image, notice: 'The image has been uploaded.'
     else
-      render 'error'
+      render 'images/error'
     end
   end
 
@@ -29,9 +25,7 @@ class ImagesController < ApplicationController
   def delete
     @image = Image.find(params[:id])
     
-    if params[:remove_image].present?
-      @image.remove_image!
-    end
+    @image.remove_image! if params[:remove_image].present?
     @image.save!
 
     flash[:success] = "The to-do item was successfully destroyed."
@@ -39,6 +33,7 @@ class ImagesController < ApplicationController
   end
 
   private
+
     def resume_params
       params.require(:image).permit(:image, :remove_image)
     end
