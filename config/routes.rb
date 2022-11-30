@@ -10,9 +10,6 @@ Rails.application.routes.draw do
   post '/images', to: 'images#create'
   delete '/delete/:id', to: 'images#delete', as: 'delete'
   patch '/update/:id', to: 'images#update', as: 'update'
-  
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 end
