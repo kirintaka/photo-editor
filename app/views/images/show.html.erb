@@ -11,19 +11,19 @@
         <td class="table-danger" style="width: 150px">
           <% if @image.image? %>
             <div class="border border-secondary p-2 mb-2 rounded">
-              <%= button_to 'Cut', rotate_path, class: "btn btn-bd-primary", params: {image: @image.image.right}, method: :patch %>
+              <%= button_to 'Cut', edit_path, class: "btn btn-bd-primary", params: {image: @image.image.right}, method: :patch %>
             </div>
 
             <div class="border border-secondary p-2 mb-2 rounded">
-              <%= button_to 'Rotate Left', rotate_path, class: "btn btn-bd-primary", params: {image: @image.image.left}, method: :patch %>
+              <%= button_to 'Rotate Left', edit_path, class: "btn btn-bd-primary", params: {image: @image.image.left}, method: :patch %>
             </div>
 
             <div class="border border-secondary p-2 mb-2 rounded">
-              <%= button_to 'Rotate Right', rotate_path, class: "btn btn-bd-primary", params: {image: @image.image.right}, method: :patch %>
+              <%= button_to 'Rotate Right', edit_path, class: "btn btn-bd-primary", params: {image: @image.image.right}, method: :patch %>
             </div>
 
             <div class="border border-secondary p-2 mb-2 rounded">
-              <%= button_to 'Resize', rotate_path, class: "btn btn-bd-primary", params: {image: @image.image.right}, method: :patch %>
+              <%= button_to 'Resize', edit_path, class: "btn btn-bd-primary", params: {image: @image.image.right}, method: :patch %>
             </div>
           
             <div class="border border-secondary p-2 mb-2 rounded">

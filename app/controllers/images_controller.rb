@@ -31,7 +31,7 @@ class ImagesController < ApplicationController
     redirect_to @image
   end
 
-  def rotate
+  def edit
     @image = Image.find(params[:id])
     @image.update_column(:image, File.basename(params[:image]))
     @image.image.recreate_versions!
