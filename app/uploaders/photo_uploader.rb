@@ -6,11 +6,12 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
+  process resize_to_limit: [1200, 700]
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "uploads/#{mounted_as}/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -33,6 +34,14 @@ class PhotoUploader < CarrierWave::Uploader::Base
     process resize_to_fit: [1200, 700]
   end
 
+  version :left do
+    process :rotate_left
+  end
+
+  version :right do
+    process :rotate_right
+  end
+
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_allowlist
@@ -42,6 +51,21 @@ class PhotoUploader < CarrierWave::Uploader::Base
   def content_type_allowlist
     /image\//
   end
+
+  private
+    def rotate_left
+      manipulate! do |img|
+        img.rotate "-90"
+        img
+      end
+    end
+
+    def rotate_right
+      manipulate! do |img|
+        img.rotate "90"
+        img
+      end
+    end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'web_pages#index'
   resources 'web_pages', only: [:index]
-  resources "images", only: [:show, :upload, :delete, :update]
+  resources "images", only: [:show, :upload, :delete, :update, :rotate]
 
   get '/images', to: 'web_pages#index'
   get '/images/:id', to: 'images#show', as: 'show'
@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post '/images', to: 'images#create'
   delete '/delete/:id', to: 'images#delete', as: 'delete'
   patch '/update/:id', to: 'images#update', as: 'update'
+  patch '/images/:id/rotate', to: 'images#rotate', as: 'rotate'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 end

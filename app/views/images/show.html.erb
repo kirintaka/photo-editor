@@ -1,35 +1,49 @@
-<table class="table table-borderless text-center">
-  <thead>
-    <tr class="table-danger table-group-divider h1">
-      <th class="fw-semibold" colspan="2">Photo Editor</th>
-    </tr>
-  </thead>
+<div class="table-responsive">
+  <table class="table table-borderless text-center">
+    <thead>
+      <tr class="table-danger table-group-divider h1">
+        <th class="fw-semibold" colspan="2">Photo Editor</th>
+      </tr>
+    </thead>
 
-  <tbody class="table-group-divider">
-    <tr class="mh-100">
-      <td style="width: 150px">
-        <% if @image.image? %>
-          <div class="border border-dark p-2 mb-2">Apply</div>
-          <div class="border border-dark p-2 mb-2">Cut</div>
-          <div class="border border-dark p-2 mb-2">Rotate</div>
-          <div class="border border-dark p-2 mb-2">Resize</div>
-        
-          <div class="border border-dark p-2 mb-2">
-            <a href="<%= "#{request.protocol}#{request.host_with_port}#{@image.image.url}" %>"
-              download="<%= "image#{@image.id}.#{@image.image.url.split(".").last}" %>"
-              class="btn btn-bd-primary">Download</a>
-          </div>
-        
-          <div class="border border-dark p-2 mb-2">
-            <%= button_to 'Delete', delete_path, class: "btn btn-bd-primary", method: :delete, params: {remove_image: @image.image } %>
-          </div>
-        <% end %>
-      </th>
-      <td class="align-middle" >
+    <tbody class="table-group-divider">
+      <tr>
+        <td class="table-danger" style="width: 150px">
+          <% if @image.image? %>
+            <div class="border border-secondary p-2 mb-2 rounded">
+              <%= button_to 'Cut', rotate_path, class: "btn btn-bd-primary", params: {image: @image.image.right}, method: :patch %>
+            </div>
+
+            <div class="border border-secondary p-2 mb-2 rounded">
+              <%= button_to 'Rotate Left', rotate_path, class: "btn btn-bd-primary", params: {image: @image.image.left}, method: :patch %>
+            </div>
+
+            <div class="border border-secondary p-2 mb-2 rounded">
+              <%= button_to 'Rotate Right', rotate_path, class: "btn btn-bd-primary", params: {image: @image.image.right}, method: :patch %>
+            </div>
+
+            <div class="border border-secondary p-2 mb-2 rounded">
+              <%= button_to 'Resize', rotate_path, class: "btn btn-bd-primary", params: {image: @image.image.right}, method: :patch %>
+            </div>
+          
+            <div class="border border-secondary p-2 mb-2 rounded">
+              <a href="<%= "#{request.protocol}#{request.host_with_port}#{@image.image.url}" %>"
+                download="<%= "image#{@image.id}_#{rand(100)}.#{@image.image.url.split(".").last}" %>"
+                class="btn btn-bd-primary">Download</a>
+            </div>
+          
+            <div class="border border-secondary p-2 mb-2 rounded">
+              <%= button_to 'Delete', delete_path, class: "btn btn-bd-primary", method: :delete, params: {remove_image: @image.image } %>
+            </div>
+
+          <% end %>
+        </th>
+        <td class="align-middle" >
           <%= render 'image' %>
-      </td>
-    </tr>
+        </td>
+      </tr>
 
 
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>

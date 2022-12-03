@@ -17,6 +17,8 @@ gem "importmap-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
+gem "turbolinks"
+gem 'shadowbox-rails'
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
@@ -37,7 +39,7 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", require: false
+gem 'bootsnap', '~> 1.15'
 gem 'bootstrap'
 
 # Use Sass to process CSS
@@ -50,8 +52,10 @@ gem 'devise'
 gem 'slim'
 gem 'better_errors'
 
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
 gem 'mini_magick'
+gem 'jcrop-rails-v2'
+gem 'popper_js', '~> 2.11.5'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

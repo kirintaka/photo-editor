@@ -24,17 +24,24 @@ class ImagesController < ApplicationController
 
   def delete
     @image = Image.find(params[:id])
-    
     @image.remove_image! if params[:remove_image].present?
-    @image.save!
+    @image.save
 
     flash[:success] = "The to-do item was successfully destroyed."
     redirect_to @image
   end
 
-  private
+  def rotate
+    @image = Image.find(params[:id])
+    @image.update_column(:image, File.basename(params[:image]))
+    @image.image.recreate_versions!
 
+    redirect_to @image
+  end
+
+  private
+  
     def resume_params
-      params.require(:image).permit(:image, :remove_image)
+      params.require(:image).permit(:image)
     end
 end
