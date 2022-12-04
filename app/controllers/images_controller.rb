@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
   def create
-    @image = Image.new(resume_params)
+    @image = Image.new(image_params)
 
     if @image.save
       redirect_to @image, notice: 'The image has been uploaded.'
@@ -17,8 +17,6 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
     @image.update(image: params[:image][:image]) if params[:image][:image].present?
 
-    flash[:success] = "The to-do item was successfully destroyed."
-
     redirect_to @image
   end
 
@@ -27,21 +25,20 @@ class ImagesController < ApplicationController
     @image.remove_image! if params[:remove_image].present?
     @image.save
 
-    flash[:success] = "The to-do item was successfully destroyed."
     redirect_to @image
   end
 
   def edit
     @image = Image.find(params[:id])
     @image.update_column(:image, File.basename(params[:image]))
-    @image.image.recreate_versions!(:thumb, :right, :left, :smaller, :bordered)
+    @image.image.recreate_versions!
 
     redirect_to @image
   end
 
   private
-  
-    def resume_params
+    
+    def image_params
       params.require(:image).permit(:image)
     end
 end

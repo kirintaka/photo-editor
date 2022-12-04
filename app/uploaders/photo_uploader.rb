@@ -33,8 +33,12 @@ class PhotoUploader < CarrierWave::Uploader::Base
     process resize_to_fit: [1200, 700]
   end
 
-  version :smaller do
-    process resize_to_fit: [10000, 10000]
+  version :small do
+    process resize_to_fit: [200, 200]
+  end
+
+  version :big do
+    process resize_to_fit: [1000, 1000]
   end
 
   version :left do
@@ -80,7 +84,6 @@ class PhotoUploader < CarrierWave::Uploader::Base
         img
       end
     end
-
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.

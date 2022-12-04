@@ -23,7 +23,11 @@
             </div>
 
             <div class="border border-secondary p-2 mb-2 rounded">
-              <%= button_to 'Resize smoller', edit_path, class: "btn btn-bd-primary", params: {image: @image.image.smaller}, method: :patch %>
+              <%= button_to 'Resize to small', edit_path, class: "btn btn-bd-primary", params: {image: @image.image.small}, method: :patch %>
+            </div>
+
+            <div class="border border-secondary p-2 mb-2 rounded">
+              <%= button_to 'Resize to big', edit_path, class: "btn btn-bd-primary", params: {image: @image.image.big}, method: :patch %>
             </div>
           
             <div class="border border-secondary p-2 mb-2 rounded">
