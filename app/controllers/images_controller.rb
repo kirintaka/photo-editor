@@ -34,7 +34,7 @@ class ImagesController < ApplicationController
   def edit
     @image = Image.find(params[:id])
     @image.update_column(:image, File.basename(params[:image]))
-    @image.image.recreate_versions!
+    @image.image.recreate_versions!(:thumb, :right, :left, :smaller, :bordered)
 
     redirect_to @image
   end

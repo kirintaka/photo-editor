@@ -1,5 +1,4 @@
 <% if @image.image? %>
-  <% @image.image.thumb%>
   <%= image_tag(@image.image.thumb.url, alt: 'Image') %>
 <% else %>
   <div class="align-middle" >
